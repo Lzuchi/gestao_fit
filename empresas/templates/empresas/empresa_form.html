@@ -1,0 +1,9 @@
+{% extends 'base_tela.html'%}
+
+{% block 'dashboard'%}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type ="submit">Salvar</button>
+</form>
+{% endblock %}

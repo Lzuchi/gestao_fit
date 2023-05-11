@@ -1,0 +1,32 @@
+{% extends 'base_tela.html' %}
+
+{% block 'dashboard' %}
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-white">Nome</th>
+                    <th class="text-white">Departamento</th>
+                    <th class="text-white">Empresa</th>
+                    <th class="text-white">Deletar</th>
+                    <th class="text-white">Novo</th>
+                </tr>
+            </thead>
+             <tbody>
+            {% for funcionario in object_list %}
+                {% for departamento in funcionario.departamentos.all %}
+                <tr>
+                    {% if forloop.first %}
+                        <td class="text-white" rowspan="{{ funcionario.departamentos.count }}"><a href="{% url 'update_funcionario' funcionario.id %}">{{ funcionario }}</a></td>
+                    {% endif %}
+                    <td class="text-white">{{ departamento.nome }}</td>
+                    <td class="text-white">{{ funcionario.empresa }}</td>
+                    <td><a href="{% url 'delete_funcionario' funcionario.id %}">Deletar</a></td>
+                    <td><a href="{% url 'create_funcionario' %}" class="btn btn-info">Novo</a></td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base_tela.html' %}
+
+{% block 'dashboard' %}
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-white">Nome</th>
+                    <th class="text-white">Departamento</th>
+                    <th class="text-white">Empresa</th>
+                    <th class="text-white">Deletar</th>
+                    <th class="text-white">Novo</th>
+                </tr>
+            </thead>
+             <tbody>
+            {% for registro_re in object_list %}
+            <tr>
+
+                <td class="text-white">{{ registro_re }}</td>
+                <td><a href="{% url 'update_hora_extra' registro_re.id %}"> {{ registro_re }}</a></td>
+                <td><a href="{% url 'delete_hora_extra' registro_re.id %}">Deletar</a></td>
+                <td><a href="{% url 'create_registro_hora_extra' %}" class="btn btn-info">Novo</a></td>
+                <td class="text-white">{{ departamento.nome }}</td>
+                <td class="text-white">{{ funcionario.empresa }}</td>
+                          </tr>
+            {% endfor %}
+
+             {% if not object_list %}
+                <h3> Não existem registro de hora extra no banco de dados</h3>
+             {% endif%}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}
