@@ -3,3 +3,4 @@
 venv
 *.pyc
 gestao_fit/__pycache__/
+fitadm.pem
